@@ -1,0 +1,174 @@
+.main > * {
+  font-size: 1.3vh;
+  font-family: "Epilogue", sans-serif;
+  background: #ccc;
+}
+
+html {
+  background: rgb(255, 255, 255);
+  --scrollbarBG: #fff;
+  --thumbBG: #90a4ae;
+}
+
+.chat {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.chat .card {
+  max-width: 125vh;
+  height: 90vh;
+  width: 90vw;
+  background-color: white;
+  border-radius: 10px;
+  border: 0.1vh solid #000;
+
+}
+body .card #header {
+  height: 7vh;
+  background: #000;
+  padding: 0vh;
+}
+.chat .card #header h1 {
+  color: #fff;
+  font-size: 4vh;
+  font-family: "Finger Paint", cursive;
+  padding: 1vh;
+}
+.chat .card #message-section::-webkit-scrollbar {
+  width: 10px;
+}
+.chat .card #message-section {
+  height: 70vh;
+  padding: 0 2.5vw;
+  overflow: auto;
+  
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+.chat .card #message-section::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+.chat .card #message-section::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}
+
+.chat .card #message-section #bot {
+  position: relative;
+  bottom: 0;
+  margin: 1vh 0vh;
+  border-left: 0.5vh solid rgb(48, 176, 211);
+  background-color: #fff;
+}
+
+.chat .card #message-section #user {
+  position: relative;
+  bottom: 0;
+  margin: 1vh 0vh;
+  border: 1.5px solid #000;
+  border-radius: 1.5vh 0vh 1.5vh 1.8vh;
+  background-color: #000;
+  padding: 1vh;
+  float: right;
+}
+.chat .card #message-section #userName {
+  position: relative;
+  top: -1px;
+  left: -0.3%;
+  min-height: 0.7vh;
+  border: 0vh solid #777;
+  padding: 0.5vh;
+  border-radius: 0vh 1.5vh 0vh 0vh;
+  color: #000;
+  background-color: rgb(24, 247, 132);
+  clear: both;
+  line-height: 2vh;
+  font-size: 2vh;
+  position: relative;
+  margin: -0.5vh;
+  width: 100.6%;
+  word-wrap: normal;
+}
+.chat .card #message-section #user #user-response {
+  color: #fff;
+}
+.chat .card #message-section .message {
+  color: #000;
+  clear: both;
+  line-height: 2.5vh;
+  font-size: 2.2vh;
+  padding: 8px;
+  position: relative;
+  margin: 8px 0;
+  max-width: 75%;
+  word-wrap: break-word;
+  z-index: 2;
+}
+.chat .card .input-section {
+  z-index: 1;
+  padding: 0 2.5vw;
+  display: flex;
+  justify-content: flex-start ;
+  overflow: hidden;
+  margin-right: 5vw;
+  height: 6vh;
+  width: 100%;
+}
+
+.chat .card .input-section input {
+  color: #000;
+  outline: none;
+  height: 5vh;
+  font-size: 2.2vh;
+  width: inherit;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid #000 0.1vw;
+}
+body .card .send {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  flex: 0 0 auto;
+  margin-left: 1vw;
+  margin-right: 3vw;
+  padding: 0;
+  position: relative;
+  outline: none;
+}
+.chat .card .send .circle {
+  position: relative;
+  width: 5vh;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(24, 247, 132);
+  border-radius: 100%;
+}
+.chat .card .send .circle i {
+  font-size: 3vh;
+  
+}
+.start {
+  position: relative;
+  width: 5vh;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(24, 176, 247);
+  border-radius: 100%;
+}
+
+@media screen and ((max-width: 80vh) or (max-width: 600px)){
+  .chat{
+      width: 90vw;
+      max-height: 90vh;
+  }
+}

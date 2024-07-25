@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,300">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400&family=Finger+Paint&display=swap">
+    <link rel="stylesheet" href="stylesheets/chatbot.css">
+</head>
+<body>
+    <form class="chat" id="chat" action="" method="post">
+          <div class="card">
+              <div id="header">
+                <h1>Chat bot</h1>
+              </div>
+                  <div id="message-section">
+                    <div class="message" id="user">
+                        <span id="user-response"> Hello </span>
+                      </div>
+                      <div class="message" id="bot">
+                        <div id="bot-response" >
+                            Hii
+                        </div>
+                      </div>
+                      <div class="message" id="user">
+                        <span id="user-response"> Hii </span>
+                      </div>
+                      <div class="message" id="bot">
+                        <div id="bot-response" >
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id sodales nulla, sed auctor metus. Morbi scelerisque volutpat ornare. Etiam semper arcu nec mi mollis tincidunt. Ut vel facilisis metus. Nullam mattis ex risus, quis molestie lectus molestie id. Etiam et elementum tortor. Donec vel urna auctor velit eleifend tincidunt.
+                        </div>
+                      </div>
+                  </div>
+                  
+                  
+              <div class="input-section">
+                  
+                <input id="input" name="inputs" type="text" placeholder="Type a message" autocomplete="off" autofocus="autofocus"/>
+                <button class="send" type="submit">
+                  <div class="circle"><i>></i></div>
+                </button>
+                  
+              </div>
+            </div>
+      </form>
+    <button class="start" id="start" onclick="openChat()">
+        <div class="circle"><i>></i></div>
+    </button>
+    <script>
+        var objDiv = document.getElementById("message-section");
+        objDiv.scrollTop = objDiv.scrollHeight;
+        document.getElementById("chat").style.display = "none";
+        function openChat(){
+            document.getElementById("chat").style.display = "block";
+            document.getElementById("start").style.display = "none";
+        }
+    </script>
+</body>
+</html>
