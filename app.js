@@ -1,15 +1,26 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const db = require('./db')
+const session = require('express-session')
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
-const hostname = '127.0.0.1';
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const { request } = require('http');
+
 const app = express()
 const port = 3000
+
+app.use(cookieParser());
+app.use(session({
+  secret: 'jdzhbfvskehfnszdhfv',
+  resave: false,
+  saveUninitialized: true,
+  }));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,10 +35,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -40,8 +47,31 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.get('/data', async (req, res) => {
+  try {
+    const result = await db.query('SELECT * FROM user_data ORDER BY timestamp ASC ');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.post('/', async(req,res) => {
+  var input = req.body['input'];
+  var sessID = req.session.id;
+  try {
+    await db.query('INSERT INTO user_data (username,session_id,queries) VALUES ($1, $2, $3)',['admin',sessID,input]);
+    const result = await db.query('SELECT * FROM user_data where username = $1',['admin']);
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.listen(port, () => {
-  console.log(`App listening on http://${hostname}:${port}/`)
+  console.log(`App listening on ${port}`)
 })
 
 module.exports = app;
