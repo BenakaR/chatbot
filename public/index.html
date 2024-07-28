@@ -7,54 +7,60 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,300">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400&family=Finger+Paint&display=swap">
     <link rel="stylesheet" href="stylesheets/chatbot.css">
+    <script src="javascripts/chats.js" ></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body>
-    <form class="chat" id="chat" action="/" method="post">
-          <div class="card">
+
+  <div class="navbar">
+      <img class="apple-logo"  src="images/apple.png" alt="apple-logo"/>
+      <ul class="navbar-list" >
+          <li class="navbar-list-elems"><a href="">Store</a></li>
+          <li class="navbar-list-elems"><a href="">iMac</a></li>
+          <li class="navbar-list-elems"><a href="">iPhone</a></li>
+          <li class="navbar-list-elems-select"><a href="">iPad</a></li>
+      </ul>
+  </div>
+
+
+
+    <div class="chat" id="chat">
+          <div class="card" id="card">
               <div id="header">
                 <h1>Chat bot</h1>
+                <button class="stop" id="stop" onclick="closeChat()">
+                  <div class="circle"><b>X</b></div>
+                </button>
               </div>
                   <div id="message-section">
-                    <div class="message" id="user">
-                        <span id="user-response"> Hello </span>
-                      </div>
-                      <div class="message" id="bot">
-                        <div id="bot-response" >
-                            Hii
-                        </div>
-                      </div>
-                      <div class="message" id="user">
-                        <span id="user-response"> Hii </span>
-                      </div>
-                      <div class="message" id="bot">
-                        <div id="bot-response" >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id sodales nulla, sed auctor metus. Morbi scelerisque volutpat ornare. Etiam semper arcu nec mi mollis tincidunt. Ut vel facilisis metus. Nullam mattis ex risus, quis molestie lectus molestie id. Etiam et elementum tortor. Donec vel urna auctor velit eleifend tincidunt.
-                        </div>
-                      </div>
+                    
                   </div>
                   
                   
               <div class="input-section">
                   
-                <input id="input" name="input" type="text" placeholder="Type a message" autocomplete="off" autofocus="autofocus"/>
-                <button class="send" type="submit">
+                <input id="input" name="input" type="text" 
+                placeholder="Type a message" />
+                <button class="send" id="send" onclick="submit()">
                   <div class="circle"><i>></i></div>
                 </button>
                   
               </div>
             </div>
-      </form>
+          </div>
     <button class="start" id="start" onclick="openChat()">
-        <div class="circle"><i>></i></div>
+        <img class="chat-img" src="images/chat.png">
     </button>
     <script>
+        document.getElementById("chat").style.display = "none";
         var objDiv = document.getElementById("message-section");
         objDiv.scrollTop = objDiv.scrollHeight;
-        document.getElementById("chat").style.display = "none";
-        function openChat(){
-            document.getElementById("chat").style.display = "block";
-            document.getElementById("start").style.display = "none";
-        }
+        document.getElementById("input").addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("send").click();
+          }
+        });
     </script>
 </body>
 </html>
