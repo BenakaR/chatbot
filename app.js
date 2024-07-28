@@ -47,7 +47,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.get('/data', async (req, res) => {
+app.get('/api/data', async (req, res) => {
   try {
     const result = await db.query('SELECT * FROM user_data ORDER BY timestamp ASC ');
     res.json(result.rows);
@@ -57,13 +57,13 @@ app.get('/data', async (req, res) => {
   }
 });
 
-app.post('/', async(req,res) => {
+app.post('/api/send', async(req,res) => {
   var input = req.body['input'];
   var sessID = req.session.id;
   try {
-    await db.query('INSERT INTO user_data (username,session_id,queries) VALUES ($1, $2, $3)',['admin',sessID,input]);
-    const result = await db.query('SELECT * FROM user_data where username = $1',['admin']);
-    res.json(result.rows);
+    const result = "Hello";
+    await db.query('INSERT INTO user_data VALUES ($1, $2, $3, $4)',['admin',sessID,input,result]);
+    res.json(result);
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
@@ -72,6 +72,6 @@ app.post('/', async(req,res) => {
 
 app.listen(port, () => {
   console.log(`App listening on ${port}`)
-})
+});
 
 module.exports = app;

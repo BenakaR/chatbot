@@ -10,54 +10,64 @@ html {
   --thumbBG: #90a4ae;
 }
 
-.chat {
-  width: 100%;
-  height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-.chat .card {
+.card {
+  position: fixed;
   max-width: 125vh;
-  height: 90vh;
-  width: 90vw;
+  height: 70vh;
+  width: 25vw;
+  bottom: 0;
+  right: 0;
+  margin: 3%;
   background-color: white;
   border-radius: 10px;
   border: 0.1vh solid #000;
 
 }
+body .card h1{
+  margin: 0%;
+  padding: 0%;
+}
 body .card #header {
   height: 7vh;
   background: #000;
-  padding: 0vh;
+  padding: 0;
+  border-radius: 10px 10px 0 0;
+  color: white;
+  font-size: 1.5vh;
+  text-align: center;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.chat .card #header h1 {
+ .card #header h1 {
   color: #fff;
   font-size: 4vh;
   font-family: "Finger Paint", cursive;
   padding: 1vh;
 }
-.chat .card #message-section::-webkit-scrollbar {
+ .card #message-section::-webkit-scrollbar {
   width: 10px;
 }
-.chat .card #message-section {
-  height: 70vh;
+ .card #message-section {
+  position: relative;
+  height: calc(90% - 10vh);
   padding: 0 2.5vw;
   overflow: auto;
   
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
 }
-.chat .card #message-section::-webkit-scrollbar-track {
+ .card #message-section::-webkit-scrollbar-track {
   background: var(--scrollbarBG);
 }
-.chat .card #message-section::-webkit-scrollbar-thumb {
+ .card #message-section::-webkit-scrollbar-thumb {
   background-color: var(--thumbBG);
   border-radius: 6px;
   border: 3px solid var(--scrollbarBG);
 }
 
-.chat .card #message-section #bot {
+ .card #message-section #bot {
   position: relative;
   bottom: 0;
   margin: 1vh 0vh;
@@ -65,7 +75,7 @@ body .card #header {
   background-color: #fff;
 }
 
-.chat .card #message-section #user {
+ .card #message-section #user {
   position: relative;
   bottom: 0;
   margin: 1vh 0vh;
@@ -75,7 +85,7 @@ body .card #header {
   padding: 1vh;
   float: right;
 }
-.chat .card #message-section #userName {
+ .card #message-section #userName {
   position: relative;
   top: -1px;
   left: -0.3%;
@@ -93,10 +103,10 @@ body .card #header {
   width: 100.6%;
   word-wrap: normal;
 }
-.chat .card #message-section #user #user-response {
+ .card #message-section #user #user-response {
   color: #fff;
 }
-.chat .card #message-section .message {
+ .card #message-section .message {
   color: #000;
   clear: both;
   line-height: 2.5vh;
@@ -108,18 +118,18 @@ body .card #header {
   word-wrap: break-word;
   z-index: 2;
 }
-.chat .card .input-section {
+ .card .input-section {
   z-index: 1;
   padding: 0 2.5vw;
   display: flex;
   justify-content: flex-start ;
-  overflow: hidden;
+  overflow: auto;
   margin-right: 5vw;
   height: 6vh;
   width: 100%;
 }
 
-.chat .card .input-section input {
+ .card .input-section input {
   color: #000;
   outline: none;
   height: 5vh;
@@ -141,7 +151,7 @@ body .card .send {
   position: relative;
   outline: none;
 }
-.chat .card .send .circle {
+ .card .send .circle {
   position: relative;
   width: 5vh;
   height: 5vh;
@@ -151,24 +161,51 @@ body .card .send {
   background-color: rgb(24, 247, 132);
   border-radius: 100%;
 }
-.chat .card .send .circle i {
+ .card .send .circle i {
   font-size: 3vh;
   
 }
 .start {
-  position: relative;
-  width: 5vh;
-  height: 5vh;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 7vh;
+  height: 7vh;
+  border: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgb(24, 176, 247);
   border-radius: 100%;
+  cursor: pointer;
+  margin: 3%;
+}
+.stop {
+  position: sticky;
+  left: 0;
+  width: 5vh;
+  height: 5vh;
+  background-color: rgb(0, 0, 0);
+  border-radius: 100%;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  margin: 3%;
+}
+.start .chat-img{
+  position: relative;
+  height: 5vh;
+  width: 5vh;
+  margin: 1vh;
+  min-height: 20px;
+  min-width: 20px;
+  margin: 0;
+  padding: 0;
 }
 
 @media screen and ((max-width: 80vh) or (max-width: 600px)){
-  .chat{
+  .card{
       width: 90vw;
-      max-height: 90vh;
+      height: 90vh;
   }
 }
