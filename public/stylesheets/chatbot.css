@@ -1,5 +1,6 @@
 .main > * {
-  font-size: 1.3vh;
+  font-size: 1vh;
+  
   font-family: "Epilogue", sans-serif;
   background: #ccc;
 }
@@ -14,7 +15,7 @@ html {
   position: fixed;
   max-width: 125vh;
   height: 70vh;
-  width: 25vw;
+  width: 30vw;
   bottom: 0;
   right: 0;
   margin: 3%;
@@ -67,7 +68,7 @@ body .card #header {
   border: 3px solid var(--scrollbarBG);
 }
 
- .card #message-section #bot {
+ .card #message-section .bot {
   position: relative;
   bottom: 0;
   margin: 1vh 0vh;
@@ -75,7 +76,7 @@ body .card #header {
   background-color: #fff;
 }
 
- .card #message-section #user {
+ .card #message-section .user {
   position: relative;
   bottom: 0;
   margin: 1vh 0vh;
@@ -103,14 +104,14 @@ body .card #header {
   width: 100.6%;
   word-wrap: normal;
 }
- .card #message-section #user #user-response {
+ .card #message-section .user  #user-response {
   color: #fff;
 }
  .card #message-section .message {
   color: #000;
   clear: both;
   line-height: 2.5vh;
-  font-size: 2.2vh;
+  font-size: 1.7vh;
   padding: 8px;
   position: relative;
   margin: 8px 0;
@@ -206,6 +207,6 @@ body .card .send {
 @media screen and ((max-width: 80vh) or (max-width: 600px)){
   .card{
       width: 90vw;
-      height: 90vh;
+      height: 85vh;
   }
 }

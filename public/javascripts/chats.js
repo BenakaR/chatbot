@@ -20,10 +20,10 @@ function display(dataset){
     chats.innerHTML = ""
     dataset.forEach(element => {
         chats.innerHTML += `
-          <div class="message" id="user">
+          <div class="message user">
             <span id="user-response"> ${element["queries"]} </span>
           </div>
-          <div class="message" id="bot">
+          <div class="message bot">
           <div id="bot-response" >
               ${element["answers"]}
           </div>
@@ -40,14 +40,20 @@ function submit(){
     let query = input.value
     input.value = ""
     chats.innerHTML += `
-          <div class="message" id="user">
+          <div class="message user">
             <span id="user-response">
             ${query}
             </span>
           </div>
+          <div class="message bot" id="loading">
+          <div id="bot-response" >
+              . . .
+          </div>
+          </div>
         `;
+    chats.scrollTop = chats.scrollHeight;
 
-    fetch('/api/send', {
+    fetch('/api/input', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -56,8 +62,10 @@ function submit(){
     })
     .then(response => response.json())
     .then(data => {
+        loading = document.getElementById("loading")
+        chats.removeChild(loading)
         chats.innerHTML += `
-          <div class="message" id="bot">
+          <div class="message bot">
           <div id="bot-response" >
               ${data}
           </div>

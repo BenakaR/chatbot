@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const db = require('./db')
 const session = require('express-session')
+const { default: ollama } = require('ollama');
 
 
 const indexRouter = require('./routes/index');
@@ -57,16 +58,21 @@ app.get('/api/data', async (req, res) => {
   }
 });
 
-app.post('/api/send', async(req,res) => {
+app.post('/api/input', async(req,res) => {
   var input = req.body['input'];
   var sessID = req.session.id;
   try {
-    const result = "Hello";
+    var response = await ollama.chat({
+      model: 'phi3',
+      messages: [{ role: 'user', content: input }],
+    });
+    console.log(response.message.content)
+    var result = response.message.content
     await db.query('INSERT INTO user_data VALUES ($1, $2, $3, $4)',['admin',sessID,input,result]);
     res.json(result);
   } catch (err) {
-    console.error(err);
-    res.status(500).send('Internal Server Error');
+    console.error(err.message);
+    res.json(err.message)
   }
 });
 
